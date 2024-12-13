@@ -1,0 +1,31 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:viewmodels="using:StealthGameAvalonia.ViewModels"
+			 x:DataType="viewmodels:LevelSelectorViewModel"
+	x:Class="StealthGameAvalonia.Views.LevelSelector">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="5*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="*" />
+			<ColumnDefinition Width="5*" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+		<ListBox Grid.Row="1" Grid.Column="1" ItemsSource="{Binding Files}" SelectedItem="{Binding SelectedLevelPath}">
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<ListBoxItem Content="{Binding Key}" Tag="{Binding Value}"/>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<Button IsVisible="{Binding IsDesktop}" Grid.Row="0" Grid.Column="2" Content="Reload Folder"  Command="{Binding ReloadCommand}"/>
+		<Button Grid.Row="2" Grid.Column="1" HorizontalAlignment="Center" Content="Load Game" Command="{Binding NaviCommand}" CommandParameter="{Binding SelectedLevelPath.Value}"/>
+	</Grid>
+	
+</UserControl>
