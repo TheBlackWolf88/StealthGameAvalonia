@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:viewmodel="using:StealthGameAvalonia.ViewModels"
+			 xmlns:utils="clr-namespace:StealthGameAvalonia.Model.Utils;assembly=StealthGameAvalonia"
+			 x:DataType="viewmodel:StealthGameViewModel"
+             x:Class="StealthGameAvalonia.Views.Game">
+	<Grid>
+		<ItemsControl ItemsSource="{Binding Level}">
+			<ItemsControl.ItemsPanel>
+				<ItemsPanelTemplate>
+					<UniformGrid Rows="{Binding Dims}" Columns="{Binding Dims}" />
+				</ItemsPanelTemplate>
+			</ItemsControl.ItemsPanel>
+			<ItemsControl.ItemTemplate>
+				<DataTemplate>
+					<Grid>
+						<Image Source="{Binding}" Margin="2" Stretch="Fill"/>
+					</Grid>
+				</DataTemplate>
+			</ItemsControl.ItemTemplate>
+		</ItemsControl>
+		<Panel IsVisible="{Binding IsMobile}" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="70,10">
+			<Button HotKey="Escape" Command="{Binding PauseCommand}">
+				<Image Source="/Assets/pause.png" Width="30"/>
+			</Button>
+		</Panel>
+		<Grid IsVisible="{Binding IsMobile}" MaxHeight="200" MaxWidth="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="80,20" >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Row="0" Grid.Column="1" HotKey="W" Command="{Binding MoveCommand}" CommandParameter="{x:Static utils:Direction.UP}">
+				<Image Source="/Assets/arrow.png" Width="30">
+					<Image.RenderTransform>
+						<RotateTransform Angle="90"/>
+					</Image.RenderTransform>
+				</Image>
+			</Button>
+			<Button Grid.Row="1" Grid.Column="0" HotKey="A" Command="{Binding MoveCommand}" CommandParameter="{x:Static utils:Direction.LEFT}">
+				<Image Source="/Assets/arrow.png" Width="30">
+					<Image.RenderTransform>
+						<RotateTransform Angle="0"/>
+					</Image.RenderTransform>
+				</Image>
+			</Button>
+			<Button Grid.Row="1" Grid.Column="1" HotKey="S" Command="{Binding MoveCommand}" CommandParameter="{x:Static utils:Direction.DOWN}">
+				<Image Source="/Assets/arrow.png" Width="30">
+					<Image.RenderTransform>
+						<RotateTransform Angle="270"/>
+					</Image.RenderTransform>
+				</Image>
+			</Button>
+			<Button Grid.Row="1" Grid.Column="2" HotKey="D" Command="{Binding MoveCommand}" CommandParameter="{x:Static utils:Direction.RIGHT}">
+				<Image Source="/Assets/arrow.png" Width="30">
+					<Image.RenderTransform>
+						<RotateTransform Angle="180"/>
+					</Image.RenderTransform>
+				</Image>
+			</Button>
+		</Grid>
+	</Grid>
+
+</UserControl>

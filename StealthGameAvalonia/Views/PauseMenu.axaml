@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:viewmodel="using:StealthGameAvalonia.ViewModels"
+			 x:DataType="viewmodel:PauseMenuViewModel"
+             x:Class="StealthGameAvalonia.Views.PauseMenu">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Grid.Row="0" HorizontalAlignment="Center" Text="{Binding PMText}" FontSize="50" VerticalAlignment="Center"/>
+		<Button Grid.Row="1" Content="New Game" Padding="40" HorizontalAlignment="Center" Command="{Binding NewGameCommand}"/>
+		<Button Grid.Row="2" Content="Back" Padding="40" HorizontalAlignment="Center" IsEnabled="{Binding IsNormalState}" IsVisible="{Binding IsNormalState}" HotKey="Escape" Command="{Binding BackCommand}"/>
+		
+	</Grid>
+</UserControl>
